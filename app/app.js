@@ -1,41 +1,58 @@
-let app = {
+// let App = {
+//   // ARCHITECTURE DE L'APPLICATION
+//   mvc: {
+//     //Instance de classe Router de la librairie vanilla routeur
+//     router: null,
 
-    // ARCHITECTURE DE L'APPLICATION
-    mvc: {
+//     dispatchRoute: function (controllerInstance) {
+//       // Vérifie que le contrôleur est un contrôleur valide
+//       if (
+//         !controllerInstance.hasOwnProperty("template") ||
+//         !controllerInstance.executeHttpRequest
+//       ) {
+//         return console.warn(
+//           `Le controller ${controllerInstance.constructor.name} est invalide.`
+//         );
+//       }
+//       console.log(controllerInstance);
+//       // Exécute une requête HTTP GET pour récupérer la vue, et définir la chaîne de promesses pour traiter la réponse
+//       fetch(controllerInstance.template)
+//         .then((response) => console.log(response.text()))
+//         .then((htmlContent) => {
+//           //La reponse HTTP contient le HTML de la vue a injecter
+//           document.querySelector(".container").innerHTML = htmlContent;
 
-        //Instance de classe Router de la librairie vanilla routeur 
-        router : null,
+//           controllerInstance.executeHttpRequest();
+//         });
+//     },
 
-        dispatchRoute: function(controllerInstance){
-            // Vérifie que le contrôleur est un contrôleur valide
-            if (!controllerInstance.hasOwnProperty('template') || !controllerInstance.executeHttpRequest) {
-                return console.warn(`Le controller ${controllerInstance.constructor.name} est invalide.`);
-            }
-            console.log(controllerInstance);
-            // Exécute une requête HTTP GET pour récupérer la vue, et définir la chaîne de promesses pour traiter la réponse
-            fetch(controllerInstance.template)
-            .then(response => console.log(response.text()))
-            .then(htmlContent => {
+//     redirectTo: function (url) {
+//       //Demande au routeur de charger une nouvelle route
+//       app.mvc.router.navigateTo(url);
+//     },
+//   },
+// };
 
-                //La reponse HTTP contient le HTML de la vue a injecter
-                document.querySelector('.container').innerHTML = htmlContent;
+// // Exporter app afin qu'il soit accessible par d'autres modules
+// export default App;
 
-                controllerInstance.executeHttpRequest();
+const express = require("express");
 
-            });
+//on definit app qui utilisera les methodes d'express
+const app = express();
 
+//module natif de node pour atteindre les fichiers
+const path = require("path");
 
+//l'écoute pour les request du serveur
+app.listen(3000);
 
-        },
+app.get("/", (req, res) => {
+  //res.send("yoooo");
+  //res.sendFile("./views/home.html", { root: __dirname }); marche uniquement si views est enfant de app
+  res.sendFile(path.join(__dirname, "../views/home.html"));
+});
 
-        redirectTo : function(url){
-            //Demande au routeur de charger une nouvelle route 
-            app.mvc.router.navigateTo(url);
-        }
-
-    }
-
-}
-
-// Exporter app afin qu'il soit accessible par d'autres modules
-export default app;
+app.get("/about", (req, res) => {
+  res.sendFile(path.join(__dirname, "../views/about.html"));
+});
