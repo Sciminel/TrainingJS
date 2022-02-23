@@ -18,7 +18,7 @@ function initialiseRouter() {
     console.log(app.mvc);
     //Définir les différentes routes disponible
     app.mvc.router
-        .add('', () => app.mvc.dispatchRoute(new Home()));
+        .add('/', () => app.mvc.dispatchRoute(new Home()));
 
 
     app.mvc.router.check().addUrlListener();

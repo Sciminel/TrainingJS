@@ -11,7 +11,6 @@ let app = {
             if (!controllerInstance.hasOwnProperty('template') || !controllerInstance.executeHttpRequest) {
                 return console.warn(`Le controller ${controllerInstance.constructor.name} est invalide.`);
             }
-            console.log(controllerInstance);
             // Exécute une requête HTTP GET pour récupérer la vue, et définir la chaîne de promesses pour traiter la réponse
             fetch(controllerInstance.template)
             .then(response => console.log(response.text()))
