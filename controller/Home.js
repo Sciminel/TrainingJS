@@ -1,7 +1,7 @@
 class Home {
 
     constructor() {
-        this.template = '/views/home.html'
+        this.template = 'views/home.html'
     }
 
     executeHttpRequest(){

@@ -7,7 +7,8 @@
     "start": "http-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "type": "module",
+  "author": "Abdel",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.3",
