@@ -40,12 +40,15 @@ const express = require("express");
 
 //on definit app qui utilisera les methodes d'express
 const app = express();
+const port = 3000;
 
 //module natif de node pour atteindre les fichiers
 const path = require("path");
 
 //l'écoute pour les request du serveur
-app.listen(3000);
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
+});
 
 app.get("/", (req, res) => {
   //res.send("yoooo");
